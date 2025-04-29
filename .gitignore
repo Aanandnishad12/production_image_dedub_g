@@ -1,0 +1,38 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.so
+
+# Environment files
+.env
+*.env
+
+# SQLite DB
+*.db
+
+# Flask instance folder
+instance/
+
+# Pytest cache
+.pytest_cache/
+
+# VS Code / PyCharm / IDEs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Migrations (optional)
+migrations/
+
+# Virtual environments
+image_dedubZ_env
+instance/image_ai.db
+.env
+
+*.json

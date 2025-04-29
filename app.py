@@ -9,10 +9,11 @@ from best_image_Z import calculate_quality_score
 from nltk.util import ngrams
 from google_ocr import  detect_text_from_binary
 import re
-import random
-import os
 from dotenv import load_dotenv
-load_dotenv()
+from pathlib import Path
+import os
+env_path = Path(__file__).resolve().parent.parent / '.env'
+load_dotenv(dotenv_path=env_path)
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///AI_image_ai.db'  # Use PostgreSQL/MySQL for prod

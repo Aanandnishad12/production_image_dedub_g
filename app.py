@@ -156,7 +156,7 @@ def image_dedub_z():
         try:
             best_image_score = calculate_quality_score(bianey_image)
         except:
-            best_image_score = ""
+            best_image_score = 0
         textsd_image_to_text = str(detect_text_from_binary(bianey_image)).replace("\n", " ")
 
     new_tracker = ImageTracker(

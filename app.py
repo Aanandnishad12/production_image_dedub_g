@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///AI_image_ai.db'  # Use PostgreSQL/MySQL for prod
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///AI_image_ai_testing.db'  # Use PostgreSQL/MySQL for prod
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
@@ -150,13 +150,12 @@ def image_dedub_z():
     image_id_delta = data["image_id"]
     textsd_image_to_text = data["image_text"]
     best_image_score = data["image_score"]
-
+    bianey_image = download_image(data["image_url"])
+    try:
+        best_image_score = calculate_quality_score(bianey_image)
+    except:
+        best_image_score = 0
     if textsd_image_to_text is None:
-        bianey_image = download_image(data["image_url"])
-        try:
-            best_image_score = calculate_quality_score(bianey_image)
-        except:
-            best_image_score = 0
         textsd_image_to_text = str(detect_text_from_binary(bianey_image)).replace("\n", " ")
 
     new_tracker = ImageTracker(
